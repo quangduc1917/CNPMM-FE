@@ -127,6 +127,12 @@
                                 <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab"
                                     aria-controls="register" aria-selected="false">Register</a>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" id="forgot-tab" data-toggle="tab" href="#forgot" role="tab"s
+                                    aria-controls="forgot" aria-selected="false">Quên mật khẩu</a>
+                            </li>
+
                         </ul>
                         <div class="tab-content" id="tab-content-5">
                             <div class="tab-pane fade show active" id="signin" role="tabpanel"
@@ -168,6 +174,14 @@
                                     </div><!-- End .form-group -->
 
                                     <div class="form-group">
+                                        <label for="register-confirmpassword">Xác nhận mật khẩu *</label>
+                                        <input type="password"  class="form-control" [(ngModel)]="confirmpassword" id="register-confirmpassword"
+                                            name="register-confirmpassword" required>
+                                    </div><!-- End .form-group -->
+                                    <div color="red" *ngIf="check()"> Mật khẩu và xác nhận mật khẩu không trùng nhau</div>
+                                    
+
+                                    <div class="form-group">
                                         <label for="register-email">Your email address *</label>
                                         <input type="email"class="form-control" [(ngModel)]="email" id="register-email"
                                             name="register-email" required>
@@ -183,6 +197,29 @@
                                 </form>
 
                             </div><!-- .End .tab-pane -->
+
+
+
+                            <div class="tab-pane fade" id="forgot" role="tabpanel" aria-labelledby="forgot-tab">
+                                <form >
+                                
+                                    <div class="form-group">
+                                        <label for="register-email">Địa chỉ email *</label>
+                                        <input type="email"class="form-control" [(ngModel)]="email" id="register-email"
+                                            name="register-email" required>
+                                    </div><!-- End .form-group -->
+                                    <div class="form-footer">
+                                        <button type="button" (click)="reset()" class="btn btn-outline-primary-2">
+                                            <span>Lấy lại mật khẩu</span>
+                                            <i class="icon-long-arrow-right"></i>
+                                        </button>
+                                    </div><!-- End .form-footer -->
+                                </form>
+
+                         </div><!-- .End .tab-pane -
+
+
+
                         </div><!-- End .tab-content -->
                     </div><!-- End .form-tab -->
                 </div><!-- End .form-box -->
