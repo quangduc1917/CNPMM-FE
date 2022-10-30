@@ -88,6 +88,9 @@ export class AuthService {
     return this.http.post(AUTH_API + '/api/user/uploadAvatar', formData);
   }
 
+  reset(emailr: string): Observable<any> {
+    return this.http.post(AUTH_API + '/api/auth/reset', {email: emailr }, httpOptions);
+  }
 
 }
 

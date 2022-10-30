@@ -17,6 +17,8 @@ export class ClientHeaderComponent implements OnInit, OnChanges {
   email!: string;
   userinfo!: string;
 
+  confirmpassword!:String;
+
   cnewpass !: string;
   cnewspass !: string;
   coldpass !: string;
@@ -143,4 +145,26 @@ export class ClientHeaderComponent implements OnInit, OnChanges {
     this.router.navigate(['/products/' + this.keyWork]);
   }
 
+  reset()
+  {
+    this.auth.reset( this.email).subscribe(
+      (data) => {
+        alert('Reset success');
+        window.location.reload();
+      },
+      (error) => {
+        alert('Reset failed');
+      }
+    );
+  }
+
+  check()
+  {
+    if(this.password!=this.confirmpassword&&this.password!=null&&this.confirmpassword!=null)
+    {
+      return true;
+    }
+   
+    return false
+  }
 }
