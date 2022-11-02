@@ -36,6 +36,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { ManagerOrderComponent } from './components/manager-order/manager-order.component';
 
 
 
@@ -69,7 +70,8 @@ enableProdMode();
     CartComponent,
     CategoryComponent,
     ProductComponent,
-    Page404Component
+    Page404Component,
+    ManagerOrderComponent
 
 
   ],

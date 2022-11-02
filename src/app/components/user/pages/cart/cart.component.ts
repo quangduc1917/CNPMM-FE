@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { orders } from 'src/app/commons/orders';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
@@ -19,6 +21,12 @@ export class CartComponent implements OnInit {
   name!: string;
   numberphone!: string;
   address!: string;
+
+  infor!: string;
+
+  inforOrder!:orders;
+
+  
 
   constructor(private auth: AuthService, private token: TokenStorageService,
     private router: Router, private route: ActivatedRoute, private cart: CartService) {
@@ -84,6 +92,17 @@ export class CartComponent implements OnInit {
 
   checkOut() {
     // tslint:disable-next-line: prefer-for-of
+    this.infor="";
+    for (let i = 0; i < this.items.length; i++) {
+      this.infor=this.infor+this.items[i].nameProduct+this.items[i].price+" (x"+this.items[i].amountItem+") ";
+      if(i!=this.items.length-1)
+      {
+        this.infor=this.infor+"<br>";
+      }
+    }
+
+  
+    this.cart.checkOut1(this.infor,this.total).subscribe();
     for (let i = 0; i < this.items.length; i++) {
       this.cart.checkOut(this.items[i].cartId).subscribe();
       this.fecthData();
