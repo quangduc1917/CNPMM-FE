@@ -2,6 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashBroadComponent } from '../components/dash-broad/dash-broad.component';
 import { EditProductComponent } from '../components/edit-product/edit-product.component';
 import { ManagerBrandsComponent } from '../components/manager-brands/manager-brands.component';
+import { ManagerOrderComponent } from '../components/manager-order/manager-order.component';
 import { ManagerProductsComponent } from '../components/manager-products/manager-products.component';
 import { ManagerUsersComponent } from '../components/manager-users/manager-users.component';
 import { Page404Component } from '../components/page404/page404.component';
@@ -24,7 +25,10 @@ const routes: Routes = [
   { path: 'products/:key', component: CategoryComponent },
   { path: 'product/:id', component: ProductComponent },
   { path: 'edit/:id', component: EditProductComponent },
-  { path: '**', component: Page404Component }
+  { path: 'managerorders', component: ManagerOrderComponent},
+  { path: '**', component: Page404Component },
+  
+  
 
 
 

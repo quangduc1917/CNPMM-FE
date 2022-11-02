@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { orders } from '../commons/orders';
 
 const AUTH_API = 'http://localhost:8080';
 const httpOptions = {
@@ -35,6 +36,11 @@ export class CartService {
 
   checkOut(cardId: number): Observable<any> {
     return this.http.put(AUTH_API + '/api/cart/checkout/' + cardId, {}, httpOptions);
+  }
+
+
+  checkOut1(orders: string,total:number): Observable<any> {
+    return this.http.post(AUTH_API + '/api/cart/checkout1', { orderName: orders,orderTotal:total}, httpOptions);
   }
 
 
