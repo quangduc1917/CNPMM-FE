@@ -37,6 +37,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ManagerOrderComponent } from './components/manager-order/manager-order.component';
+import { ManagerStatisticalComponent } from './components/manager-statistical/manager-statistical.component';
+import { ManagerNotifyComponent } from './components/manager-notify/manager-notify.component';
 
 
 
@@ -71,7 +73,9 @@ enableProdMode();
     CategoryComponent,
     ProductComponent,
     Page404Component,
-    ManagerOrderComponent
+    ManagerOrderComponent,
+    ManagerStatisticalComponent,
+    ManagerNotifyComponent
 
 
   ],
