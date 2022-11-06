@@ -1,18 +1,19 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/services/auth.service';
-import { BrandService } from 'src/app/services/brand.service';
+import { NotifyService } from 'src/app/services/notify.service';
 import { OrderService } from 'src/app/services/order.service';
 
 @Component({
-  selector: 'app-manager-order',
-  templateUrl: './manager-order.component.html',
-  styleUrls: ['./manager-order.component.css']
+  selector: 'app-manager-notify',
+  templateUrl: './manager-notify.component.html',
+  styleUrls: ['./manager-notify.component.css']
 })
-export class ManagerOrderComponent implements OnInit {
+export class ManagerNotifyComponent implements OnInit {
 
   orders?: any;
+  comments?:any;
   test!: string;
   keyWord !: string;
   sort !: number;
@@ -26,7 +27,7 @@ export class ManagerOrderComponent implements OnInit {
   pageSizes = [3, 6, 9];
   currentIndex = -1;
 
-  constructor(public modalService: NgbModal, private router: Router, private auth: AuthService,private order: OrderService) {
+  constructor(public modalService: NgbModal, private router: Router, private auth: AuthService,private order: OrderService,private noti:NotifyService) {
     if (localStorage.getItem('role') !== '[ROLE_ADMIN]' && localStorage.getItem('role') === null && this.auth.getLogin() === false) {
       this.router.navigate(['/home']);
     }
@@ -39,9 +40,10 @@ export class ManagerOrderComponent implements OnInit {
 
 
   loadData() {
-    this.order.getAllOrder().subscribe(
+    this.noti.getAllNotify().subscribe(
       (data) => {
-        this.orders = data;
+        this.comments = data;
+        console.log(this.comments)
       }
     );
 
@@ -84,10 +86,10 @@ export class ManagerOrderComponent implements OnInit {
   retrieveTutorials(): void {
     const params = this.getRequestParams(this.page, this.pageSize, this.keyWord, this.sort, this.selected);
 
-    this.order.getAllOrder1(params).subscribe(
+    this.noti.getAllNotify1(params).subscribe(
       (data) => {
         console.log(data);
-        this.orders = data?.content;
+        this.comments = data?.content;
         this.count = data?.totalElements;
       }, (err) => {
         console.log(err);
@@ -100,4 +102,15 @@ export class ManagerOrderComponent implements OnInit {
     this.retrieveTutorials();
   }
 
+
+  delete(id: number) {
+    this.noti.deleteComment(id).subscribe(
+      (data) => {
+        this.retrieveTutorials();
+        alert('Delete success!');
+      }, (err) => {
+        alert('Delete failed!');
+      }
+    );
+  }
 }

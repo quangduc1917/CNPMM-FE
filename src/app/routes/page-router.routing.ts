@@ -2,8 +2,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashBroadComponent } from '../components/dash-broad/dash-broad.component';
 import { EditProductComponent } from '../components/edit-product/edit-product.component';
 import { ManagerBrandsComponent } from '../components/manager-brands/manager-brands.component';
+import { ManagerNotifyComponent } from '../components/manager-notify/manager-notify.component';
 import { ManagerOrderComponent } from '../components/manager-order/manager-order.component';
 import { ManagerProductsComponent } from '../components/manager-products/manager-products.component';
+import { ManagerStatisticalComponent } from '../components/manager-statistical/manager-statistical.component';
 import { ManagerUsersComponent } from '../components/manager-users/manager-users.component';
 import { Page404Component } from '../components/page404/page404.component';
 import { ProfileAdminComponent } from '../components/profile-admin/profile-admin.component';
@@ -26,6 +28,8 @@ const routes: Routes = [
   { path: 'product/:id', component: ProductComponent },
   { path: 'edit/:id', component: EditProductComponent },
   { path: 'managerorders', component: ManagerOrderComponent},
+  { path: 'managernotify', component: ManagerNotifyComponent},
+  { path: 'managerstatistical', component: ManagerStatisticalComponent},
   { path: '**', component: Page404Component },
   
   
