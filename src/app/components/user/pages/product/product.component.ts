@@ -1,6 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Directive, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { HostListener } from '@angular/core';
+import { ElementRef} from '@angular/core';
+
 import { ProductDetail } from 'src/app/commons/productDetail';
 import { CartService } from 'src/app/services/cart.service';
 import { CommentService } from 'src/app/services/comment.service';
@@ -12,14 +15,20 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
+
+  
 })
+
+
 export class ProductComponent implements OnInit {
 
   id!: number;
   dataDetail?: any;
 
   comment !: string;
+
+  im2!: string;
 
   imageFirst !: string;
   imageTwo !: string;
@@ -63,11 +72,21 @@ export class ProductComponent implements OnInit {
 
   countReview = 0;
 
+
+  @ViewChild('test1') el1:ElementRef;
+  @ViewChild('test2') el2:ElementRef;
+  @ViewChild('test3') el3:ElementRef;
+  @ViewChild('test4') el4:ElementRef;
+
+
+
   // tslint:disable-next-line: max-line-length
   constructor(private route: ActivatedRoute, private product: ProductService,
               private detail: ProductDetailService, private commentActice: CommentService, private reviewAction: ReviewService,
               private token: TokenStorageService,
-              private cart: CartService) {
+              private cart: CartService,
+              private elementRef: ElementRef
+              ) {
     if (this.route.snapshot.params[`id`]) {
       this.id = this.route.snapshot.params[`id`];
     }
@@ -85,7 +104,6 @@ export class ProductComponent implements OnInit {
       }
     );
   }
-
 
 
   ngOnInit() {
@@ -256,6 +274,49 @@ export class ProductComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+
+
+  // @HostListener('click')
+  // image1()
+  // {
+  //   console.log(this.elementRef.nativeElement.src);
+  //   var src = this.el1.nativeElement.src;
+  //   var pr:any= document.getElementById("preview");
+  //   pr.src=src;
+    
+
+  // }
+  image1()
+  {
+    console.log(this.el1.nativeElement.src)
+    var src = this.el1.nativeElement.src;
+    var pr:any= document.getElementById("preview");
+    pr.src=src;
+
+  }
+
+  image2()
+  {
+    console.log(this.el2.nativeElement.src)
+    var src = this.el2.nativeElement.src;
+    var pr:any= document.getElementById("preview");
+    pr.src=src;
+  }
+  image3()
+  {
+    console.log(this.el3.nativeElement.src)
+    var src = this.el3.nativeElement.src;
+    var pr:any= document.getElementById("preview");
+    pr.src=src;
+  }
+  image4()
+  {
+    console.log(this.el4.nativeElement.src)
+    var src = this.el4.nativeElement.src;
+    var pr:any= document.getElementById("preview");
+    pr.src=src;
   }
 
 }
