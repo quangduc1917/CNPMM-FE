@@ -9,32 +9,32 @@
                         <div class="product-gallery product-gallery-vertical">
                             <div class="row">
                                 <figure class="product-main-image">
-                                    <img id="product-zoom"
+                                    <img id="preview"
                                         src="http://localhost:8080/api/public/downloadFile/{{imageFirst}}"
                                         alt="product image">
 
                                 </figure><!-- End .product-main-image -->
 
                                 <div id="product-zoom-gallery" class="product-image-gallery">
-                                    <a class="product-gallery-item active" href="#">
+                                    <div class="product-gallery-item active">
                                         <img src="http://localhost:8080/api/public/downloadFile/{{imageFirst}}"
-                                            alt="product side">
-                                    </a>
+                                            alt="product side" (click)="image1()" #test1>
+                                    </div>
 
-                                    <a class="product-gallery-item">
-                                        <img src="http://localhost:8080/api/public/downloadFile/{{imageTwo}}"
-                                            alt="product cross">
-                                    </a>
+                                    <div class="product-gallery-item">
+                                        <img  src="http://localhost:8080/api/public/downloadFile/{{imageTwo}}"
+                                            alt="product cross"(click)="image2()" #test2>
+                                    </div>
 
-                                    <a class="product-gallery-item" href="#">
+                                    <div class="product-gallery-item">
                                         <img src="http://localhost:8080/api/public/downloadFile/{{imageThree}}"
-                                            alt="product with model">
-                                    </a>
+                                            alt="product with model" (click)="image3()" #test3>
+                                    </div>
 
-                                    <a class="product-gallery-item" href="#">
-                                        <img src="http://localhost:8080/api/public/downloadFile/{{imageFour}}"
-                                            alt="product back">
-                                    </a>
+                                    <div class="product-gallery-item">
+                                        <img  src="http://localhost:8080/api/public/downloadFile/{{imageFour}}"
+                                            alt="product back" (click)="image4()" #test4>
+                                    </div>
                                 </div><!-- End .product-image-gallery -->
                             </div><!-- End .row -->
                         </div><!-- End .product-gallery -->
