@@ -136,6 +136,7 @@ export class ManagerUsersComponent implements OnInit {
         (data) => {
           this.retrieveTutorials();
           alert('Update user success!');
+          window.location.reload();
         }, (err) => {
           alert('Update user failed!');
         }

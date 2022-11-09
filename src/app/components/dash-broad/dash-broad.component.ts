@@ -12,6 +12,7 @@ export class DashBroadComponent implements OnInit {
   constructor(private router: Router, private auth: AuthService) {
     if (localStorage.getItem('role') !== '[ROLE_ADMIN]' && localStorage.getItem('role') === null && this.auth.getLogin() === false) {
         this.router.navigate(['/home']);
+        // window.location.href = '/home';
     }
   }
 

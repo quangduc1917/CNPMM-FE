@@ -48,7 +48,7 @@
                                 <div class="ratings">
                                     <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
                                 </div><!-- End .ratings -->
-                                <a class="ratings-text" href="#product-review-link" id="review-link">( {{countReview}} Reviews )</a>
+                                <a class="ratings-text" href="#product-review-link" id="review-link">( {{countReview}} Đánh giá )</a>
                             </div><!-- End .rating-container -->
 
                             <div class="product-price">
@@ -65,7 +65,7 @@
                             </div><!-- End .details-filter-row -->
 
                             <div class="product-details-action">
-                                <a type="button" (click)="addToCart()" class="btn-product btn-cart"><span>add to cart</span></a>
+                                <a type="button" (click)="addToCart()" class="btn-product btn-cart"><span>Thêm vào giỏ hàng</span></a>
 
 
                             </div><!-- End .product-details-action -->
@@ -94,26 +94,26 @@
                 <ul class="nav nav-pills justify-content-center" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="product-desc-link" data-toggle="tab" href="#product-desc-tab"
-                            role="tab" aria-controls="product-desc-tab" aria-selected="true">Description</a>
+                            role="tab" aria-controls="product-desc-tab" aria-selected="true">Mô tả</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="product-info-link" data-toggle="tab" href="#product-info-tab" role="tab"
-                            aria-controls="product-info-tab" aria-selected="false">Additional information</a>
+                            aria-controls="product-info-tab" aria-selected="false">Thông tin sản phẩm</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="product-shipping-link" data-toggle="tab" href="#product-shipping-tab"
-                            role="tab" aria-controls="product-shipping-tab" aria-selected="false">Comment</a>
+                            role="tab" aria-controls="product-shipping-tab" aria-selected="false">Bình luận</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="product-review-link" data-toggle="tab" href="#product-review-tab"
-                            role="tab" aria-controls="product-review-tab" aria-selected="false">Reviews</a>
+                            role="tab" aria-controls="product-review-tab" aria-selected="false">Đánh giá</a>
                     </li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel"
                         aria-labelledby="product-desc-link">
                         <div class="product-desc-content">
-                            <h3>Image product</h3>
+                            <h3>Hình ảnh sản phẩm</h3>
                             <div class="col-12 row">
                                 <div class="col-3">
                                     <img src="http://localhost:8080/api/public/downloadFile/{{imageFirst}}"
@@ -135,7 +135,7 @@
                             </div>
 
 
-                            <h3>Content</h3>
+                            <h3>Nội dung:</h3>
 
                             <p *ngIf="content != null">{{content}}</p>
 
@@ -164,7 +164,7 @@
                     <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel"
                         aria-labelledby="product-shipping-link">
                         <div >
-                            <h3>Comment</h3>
+                            <h3>Bình luận</h3>
                             <div class="review">
                                 <div class="col-12 row">
 
@@ -209,14 +209,14 @@
                                     <div class="col-5">
                                         <form>
                                             <div class="form-group">
-                                                <label for="comment">Comment *</label>
+                                                <label for="comment">Bình luận *</label>
                                                 <input type="text" [(ngModel)]="comment" class="form-control"
                                                     id="id-comment" name="comment" required>
                                             </div><!-- End .form-group -->
 
                                             <div class="form-footer">
                                                 <button (click)="fun_comment()" class="btn btn-outline-primary-2">
-                                                    <span>Comment</span>
+                                                    <span>Bình luận</span>
                                                     <i class="icon-long-arrow-right"></i>
                                                 </button>
                                             </div><!-- End .form-footer -->
@@ -231,7 +231,7 @@
                     <div class="tab-pane fade" id="product-review-tab" role="tabpanel"
                         aria-labelledby="product-review-link">
                         <div class="reviews">
-                            <h3>Reviews</h3>
+                            <h3>Đánh giá</h3>
                             <div class="review">
                                 <div class="col-12 row">
                                     <div class="col-7">
@@ -258,7 +258,7 @@
                                             <div class="col">
 
                                                 <div class="review-content">
-                                                    <p>{{item.star}} point</p>
+                                                    <p>{{item.star}} Điểm</p>
                                                     <p>{{item.contentReview}}</p>
                                                 </div><!-- End .review-content -->
 
@@ -276,13 +276,13 @@
                                     </div>
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <label for="pointName">Point (100đ) *</label>
+                                            <label for="pointName">Điểm (100đ) *</label>
                                             <input type="text" class="form-control" [(ngModel)]="point" id="id-point"
                                                 name="point">
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
-                                            <label for="reviewName">Review *</label>
+                                            <label for="reviewName">Đánh giá *</label>
                                             <input type="text" class="form-control" id="id-review" [(ngModel)]="review"
                                                 name="review">
                                         </div><!-- End .form-group -->
@@ -290,7 +290,7 @@
                                         <div class="form-footer">
                                             <button type="button" (click)="fun_review()"
                                                 class="btn btn-outline-primary-2">
-                                                <span>REVIEW</span>
+                                                <span>ĐÁNH GIÁ</span>
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>
                                         </div><!-- End .form-footer -->
