@@ -22,7 +22,7 @@ export class SideBarComponent implements OnInit {
       this.auth.getUserInfo().subscribe(
         (data) => {
           this.avatar = data?.imgAvatar;
-          this.userinfo = data?.userName;
+          this.userinfo = data?.name;
         }
       );
     }

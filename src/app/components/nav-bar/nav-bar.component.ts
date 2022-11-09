@@ -30,7 +30,7 @@ export class NavBarComponent implements OnInit {
     if (this.token.getToken() != null) {
       this.auth.getUserInfo().subscribe(
         (data) => {
-          this.userinfo = data?.userName;
+          this.userinfo = data?.name;
         }
       );
     }
