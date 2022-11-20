@@ -49,9 +49,9 @@
                     <th><b>ID</b></th>
                     <th><b>Thông tin sản phẩm</b></th>
                     <th><b>Tổng tiền</b></th>
-                    <th><b>Người đặt hàng</b></th>
+                    <th><b>Tài khoản đặt hàng</b></th>
                     <th><b>Thời gian</b></th>
-                    <th><b>Địa chỉ</b></th>
+                    <th><b>Thông tin người đặt hàng</b></th>
                   </tr>
                 </thead>
                 <tbody *ngFor="let item of orders">
@@ -68,12 +68,13 @@
 
 
                   <tr>
-                    <td >{{item.id}}</td>
-                    <td [innerHTML]="item.orderName"></td>
-                    <td>{{item.order_total}}</td>
-                    <td>{{item.userName}}</td>
-                    <td>{{item.date}}</td>
-                    <td>{{item.address}}</td>
+                    <td style="width: 3%;" >{{item.id}}</td>
+                    <td class="noidung" [innerHTML]="item.orderName"></td>
+                    <td class="noidung">{{item.order_total}} đ</td>
+                    <td class="noidung">{{item.userName}}</td>
+                    <td class="noidung">{{item.date}}</td>
+                    <td style="width: 35%;"> <div class="noidung" style="text-align: justify; margin-left: 20px; margin-right: 15px;" [innerHTML]="item.orderInfor"> </div></td>
+                    <!-- <td style="text-align:justify;" [innerHTML]="item.orderInfor"></td> -->
                    
                   </tr>
                   
@@ -92,5 +93,12 @@
     </div>
   </section>
 </div>
+
+
+
+
+
+
+ 
 
 <app-footer></app-footer>

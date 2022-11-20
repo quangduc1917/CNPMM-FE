@@ -70,12 +70,12 @@
 
 
                   <tr>
-                    <td >{{item.id}}</td>
-                    <td >{{item.commentText}}</td>
-                    <td>{{item.userName}}</td>
-                    <td>{{item.productName}}</td>
-                    <td>{{item.date}}</td>
-                    <td>
+                    <td class="noidung" style="width: 3%;" >{{item.id}}</td>
+                    <td style="width: 35%" ><div class="noidung" style="text-align: justify; margin-left: 20px; margin-right: 15px;">{{item.commentText}}</div></td>
+                    <td class="noidung">{{item.userName}}</td>
+                    <td class="noidung">{{item.productName}}</td>
+                    <td class="noidung">{{item.date}}</td>
+                    <td class="noidung"  style="width: 15%;">
                       <button class="btn btn-danger ml-3" (click)="delete( item.id )">Delete <i class="fas fa-trash"></i></button>
                     </td>
                    

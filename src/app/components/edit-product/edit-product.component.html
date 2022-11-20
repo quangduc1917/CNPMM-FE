@@ -51,6 +51,7 @@
                   <input type="file" id="inputName" multiple (change)="onFileChange($event)" name="name"
                     class="form-control" />
                 </div>
+                
                 <div class="col-12 row mt-3">
                   <img *ngIf="image1 != null" src="http://localhost:8080/api/public/downloadFile/{{image1}}" alt="image" class="col-3"
                     width="100" height="50">

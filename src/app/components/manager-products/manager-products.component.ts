@@ -13,6 +13,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class ManagerProductsComponent implements OnInit {
 
   closeResult = '';
+  id!: number;
   brands!: any;
   name!: string;
   price!: number;
@@ -25,6 +26,7 @@ export class ManagerProductsComponent implements OnInit {
   image !: string;
 
   keyWord !: string;
+  myFiles: string[] = [];
 
   tutorials: any;
   currentTutorial = null;
@@ -42,6 +44,8 @@ export class ManagerProductsComponent implements OnInit {
     }
   }
 
+
+
   ngOnInit() {
     this.brand.getAllBrand().subscribe(
       (data) => {
@@ -52,12 +56,23 @@ export class ManagerProductsComponent implements OnInit {
     );
 
     this.retrieveTutorials();
+
   }
 
 
   open(content) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
+      
+      this.product.uploadImage1(this.myFiles).subscribe(
+        (data1) => {
+          window.location.reload();
+          alert('Upload success!');
+        }, err => {
+          console.log(err);
+          alert('Upload image failed!');
+        }
+      );
       this.product.saveProduct(this.name, this.price, this.year, this.origin, this.amount, this.selected).subscribe(
         (data) => {
           this.retrieveTutorials();
@@ -66,11 +81,18 @@ export class ManagerProductsComponent implements OnInit {
           alert('Insert product failed!');
         }
       );
+      
+
+
+  
+
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+   
   }
 
+ 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -121,7 +143,11 @@ export class ManagerProductsComponent implements OnInit {
       (data) => {
         console.log(data);
         this.tutorials = data?.content;
+        for(let i=0;i<this.tutorials.length;i++){
+          this.tutorials[i].price=this.formatCash(this.tutorials[i].price.toString());
+        }
         this.count = data?.totalElements;
+
       }, (err) => {
         console.log(err);
       }
@@ -132,6 +158,12 @@ export class ManagerProductsComponent implements OnInit {
     this.page = event;
     this.retrieveTutorials();
   }
+  formatCash(str) {
+    return str.split('').reverse().reduce((prev, next, index) => {
+      return ((index % 3) ? next : (next + '.')) + prev
+    })
+  }
+
 
   handlePageSizeChange(event): void {
     this.pageSize = event.target.value;
@@ -151,6 +183,16 @@ export class ManagerProductsComponent implements OnInit {
       }
     );
   }
+
+  onFileChange(event) {
+
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < event.target.files.length; i++) {
+      this.myFiles.push(event.target.files[i]);
+    }
+  }
+
+  
 
 
 

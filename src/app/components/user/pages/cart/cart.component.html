@@ -19,12 +19,12 @@
                   <th>Sản phẩm</th>
                   <th>Giá</th>
                   <th>Số lượng</th>
-                  <th>Tổng cộng</th>
+                  <th style="width: 130px;">Tổng cộng</th>
                   <th></th>
                 </tr>
               </thead>
 
-              <tbody *ngFor="let item of items">
+              <tbody *ngFor="let item of items1">
                 <tr *ngIf="item.state == 0">
                   <td class="product-col">
                     <div class="product">
@@ -41,14 +41,14 @@
                       </h3><!-- End .product-title -->
                     </div><!-- End .product -->
                   </td>
-                  <td class="price-col">${{item.price}}</td>
+                  <td class="price-col" style="width: 130px;">{{item.price}} đ</td>
                   <td class="quantity-col">
                     <div class="cart-product-quantity">
                       <input type="number" class="form-control" (change)="updateAmountItem($event, item.cartId)"
-                        value="{{item.amountItem}}" min="1" max="10" step="1" data-decimals="0" required>
+                        value="{{item.amountItem}}" min="1" max="100" step="1" data-decimals="0" required>
                     </div><!-- End .cart-product-quantity -->
                   </td>
-                  <td class="total-col">${{item.totalPrice}}</td>
+                  <td class="total-col">{{item.totalPrice}} đ</td>
                   <td class="remove-col"><button class="btn-remove" (click)="deleteItem( item.cartId)"><i
                         class="icon-close"></i></button></td>
                 </tr>
@@ -64,7 +64,7 @@
                 <tbody>
                   <tr class="summary-total">
                     <td>Tổng cộng:</td>
-                    <td>${{total}}</td>
+                    <td>{{total}} đ</td>
                   </tr><!-- End .summary-total -->
                 </tbody>
               </table>
@@ -112,19 +112,41 @@
                   <tbody>
                     <tr class="summary-total">
                       <td>Tên: </td>
-                      <td>{{name}}</td>
+                      <td>
+                        <div class="form-group">
+                        <input type="text"  [(ngModel)]="nameorder"  class="form-control" id=""
+                            name="">
+                    </div><!-- End .form-group -->
+                    </td>
+
+                      
+
                     </tr>
                     <tr class="summary-total">
                       <td>Số điện thoại: </td>
-                      <td>{{numberphone}}</td>
+                      <!-- <td>{{numberphone}}</td> -->
+                      <td>
+                        <div class="form-group">
+                        <input type="text"   [(ngModel)]="phoneorder"  class="form-control" id=""
+                            name="">
+                    </div><!-- End .form-group -->
+                    </td>
+
                     </tr>
                     <tr class="summary-total">
                       <td>Địa chỉ: </td>
-                      <td>{{address}}</td>
+                      <!-- <td>{{address}}</td> -->
+                      <td>
+                        <div class="form-group">
+                        <input type="text"  [(ngModel)]="addressoder"   class="form-control" id=""
+                            name="">
+                    </div><!-- End .form-group -->
+                    </td>
+
                     </tr>
                     <tr class="summary-total">
                       <td>Tổng cộng:</td>
-                      <td>${{total}}</td>
+                      <td>{{total}} <span>đ</span></td>
                     </tr><!-- End .summary-total -->
                     <tr class="summary-total">
                       <td></td>

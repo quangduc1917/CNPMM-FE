@@ -1,3 +1,4 @@
+import { StringMapWithRename } from '@angular/compiler/src/compiler_facade_interface';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -27,6 +28,7 @@ export class ProductOneComponent implements OnInit {
   img !: string;
 
   items?: any;
+  convert!: string;
 
 
 
@@ -37,12 +39,33 @@ export class ProductOneComponent implements OnInit {
     this.product.getAllProduct(params).subscribe(
       (data) => {
         this.products = data?.content;
-        console.log(this.products);
+        
+        for(let i=0;i<this.products.length;i++){
+          this.products[i].price=this.formatCash(this.products[i].price.toString());
+        }
+        
+     
       }
+      
+     
     );
+    
+    let x = document.getElementById("sao").style.width="100%";
+    
 
 
   }
+
+
+  formatCash(str) {
+    return str.split('').reverse().reduce((prev, next, index) => {
+      return ((index % 3) ? next : (next + '.')) + prev
+    })
+  }
+
+
+    
+ 
 
 
   getRequestParams(offset, limit, keyWord, sort, brandId): any {

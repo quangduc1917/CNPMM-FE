@@ -27,10 +27,18 @@ export class ProductTwoComponent implements OnInit {
     this.product.getAllProduct(params).subscribe(
       (data) => {
         this.products = data?.content;
+        for(let i=0;i<this.products.length;i++){
+          this.products[i].price=this.formatCash(this.products[i].price.toString());
+        }
       }
     );
   }
 
+  formatCash(str) {
+    return str.split('').reverse().reduce((prev, next, index) => {
+      return ((index % 3) ? next : (next + '.')) + prev
+    })
+  }
 
   getRequestParams(offset, limit, keyWord, sort, brandId): any {
     // tslint:disable-next-line:prefer-const

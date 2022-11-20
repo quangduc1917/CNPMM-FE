@@ -39,8 +39,8 @@ export class CartService {
   }
 
 
-  checkOut1(orders: string,total:number): Observable<any> {
-    return this.http.post(AUTH_API + '/api/cart/checkout1', { orderName: orders,orderTotal:total}, httpOptions);
+  checkOut1(orders: string,total:number,infor:string): Observable<any> {
+    return this.http.post(AUTH_API + '/api/cart/checkout1', { orderName: orders,orderTotal:total,orderInfor:infor}, httpOptions);
   }
 
 

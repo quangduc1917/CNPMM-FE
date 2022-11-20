@@ -35,11 +35,11 @@
                       </div><!-- End .product-cat -->
                       <h3 class="product-title"><a [routerLink]="['/product', item.productId]" routerLinkActive="router-link-active" >{{item.nameProduct}}</a></h3><!-- End .product-title -->
                       <div class="product-price">
-                          <span class="new-price">{{item.price}}</span>
+                          <span class="new-price">{{item.price}}   đ</span>
                       </div><!-- End .product-price -->
                       <div class="ratings-container">
                           <div class="ratings">
-                              <div class="ratings-val" style="width: 40%;"></div><!-- End .ratings-val -->
+                              <div class="ratings-val"  id="sao"></div><!-- End .ratings-val -->
                           </div><!-- End .ratings -->
                           <span class="ratings-text">( {{item.reviewer}} Đánh giá )</span>
                       </div><!-- End .rating-container -->
