@@ -23,4 +23,8 @@ export class OrderService {
     return this.http.get(AUTH_API + '/api/public/order/all1', { params });
   }
 
+
+  getAllOrder12(): Observable<any> {
+    return this.http.get(AUTH_API + '/api/public/order/sale', httpOptions);
+  }
 }

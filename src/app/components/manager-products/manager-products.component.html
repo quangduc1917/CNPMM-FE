@@ -82,7 +82,7 @@
                    <td><img *ngIf="item.imageFirst != null" src="http://localhost:8080/api/public/downloadFile/{{item.imageFirst}}" width="80" height="50" alt="image" /></td>
                    <td *ngIf="item.stateProduct == 1">STILL</td>
                    <td *ngIf="item.stateProduct == 0">END</td>
-                   <td>{{item.price}}</td>
+                   <td>{{item.price}} đ</td>
                    <td>{{item.amount}}</td>
                    <td>{{item.nameBrand}}</td>
                    <td>
@@ -150,6 +150,17 @@
           <input class="form-control" [(ngModel)]="amount" placeholder="Enter amount" name="amount">
         </div>
       </div>
+
+
+      <div class="mb-3 ml-5 mr-5">
+        <label for="origin">Image</label>
+        <div class="input-group">
+          <input type="file" id="inputName" multiple (change)="onFileChange($event)" name="name"
+          class="form-control" />
+        </div>
+    
+      </div>
+      
 
       <div class="mb-3 ml-5 mr-5">
         <label for="email">Brand</label>

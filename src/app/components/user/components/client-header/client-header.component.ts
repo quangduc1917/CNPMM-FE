@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import jwtDecode from 'jwt-decode';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-client-header',
@@ -16,6 +19,9 @@ export class ClientHeaderComponent implements OnInit, OnChanges {
   password!: string;
   email!: string;
   userinfo!: string;
+ 
+  passCheck=0;
+  passConfirm=0;
 
   confirmpassword!:String;
 
@@ -38,10 +44,33 @@ export class ClientHeaderComponent implements OnInit, OnChanges {
   nCountCart !: number;
 
 
-  constructor(public auth: AuthService, private token: TokenStorageService, private router: Router) {
+
+  checkForm:FormGroup;
+  checkSignin:FormGroup;
+
+  constructor(public auth: AuthService, private token: TokenStorageService, private router: Router,private formbuilder: FormBuilder) {
     if (this.token.getToken() != null) {
       this.auth.setLogin(true);
     }
+
+    this.checkForm= new FormGroup({
+            username: new FormControl('',[
+            Validators.required
+            ]),
+            email:new FormControl('',[
+              Validators.required,
+              Validators.email])
+    });
+
+    this.checkSignin=new FormGroup({
+      email_signin:new FormControl('',[
+      Validators.required,
+      Validators.email
+      ]),
+      pass_signin:new FormControl('',[
+        Validators.required])
+      });
+
   }
   ngOnChanges(): void {
 
@@ -85,16 +114,26 @@ export class ClientHeaderComponent implements OnInit, OnChanges {
   }
 
   register() {
-    this.auth.register(this.username, this.password, this.email).subscribe(
-      (data) => {
-        alert('Register success');
-        window.location.reload();
-      },
-      (error) => {
-        alert('Register failed');
-      }
-    );
+    if(this.passCheck==0||this.check()==true)
+    {
+      alert('Đăng kí không thành công');
+    }
+    else(
+      this.auth.register(this.username, this.password, this.email).subscribe(
+        (data) => {
+          alert('Register success');
+          window.location.reload();
+        },
+        (error) => {
+          alert('Register failed');
+        }
+      )
+    )
+
+   
+    
   }
+
 
   logout() {
     this.token.singOut();
@@ -164,7 +203,47 @@ export class ClientHeaderComponent implements OnInit, OnChanges {
     {
       return true;
     }
-   
-    return false
+  
+    return false;
   }
+
+
+
+
+
+
+check12() {
+      var strength = document.getElementById('strength');
+      var strongRegex = new RegExp("^(?=.{14,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+      var mediumRegex = new RegExp("^(?=.{10,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+      var enoughRegex = new RegExp("(?=.{8,}).*", "g");
+      var pwd = document.getElementById("password");
+      if (this.password.length == 0) {
+        strength.innerHTML = '<span style="color:green"></span>';
+        this.passCheck=0;
+
+      } else if (false == enoughRegex.test(this.password)) {
+          
+          strength.innerHTML = '<span style="color:green">Tối thiểu 8 kí tự!</span>';
+          this.passCheck=0;
+      } else if (strongRegex.test(this.password)) {
+         
+         strength.innerHTML = '<span style="color:green">Mật khẩu: Mạnh!</span>';
+         this.passCheck=1;
+      } else if (mediumRegex.test(this.password)) {
+       
+          strength.innerHTML = '<span style="color:black">Mật khẩu: Trung Bình!</span>'; 
+          this.passCheck=0;
+      } else {
+          strength.innerHTML = '<span style="color:red">Mật khẩu: Yếu!</span>';
+          this.passCheck=0;
+      }
+  }
+
+
+
+  
+
 }
+
+

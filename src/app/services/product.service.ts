@@ -17,6 +17,7 @@ export class ProductService {
     return this.http.post(AUTH_API + '/api/product/insert', { nameProduct, price, year, origin, amount, brandId }, httpOptions);
   }
 
+ 
   getAllProduct(params): Observable<any> {
     return this.http.get(AUTH_API + '/api/public/product/all', { params });
   }
@@ -42,6 +43,17 @@ export class ProductService {
       formData.append('files', files[i]);
     }
     return this.http.put(AUTH_API + '/api/product/uploadImage/' + productId, formData);
+  }
+
+ 
+
+  uploadImage1(files: string[]): Observable<any> {
+    const formData = new FormData();
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < files.length; i++) {
+      formData.append('files', files[i]);
+    }
+    return this.http.put(AUTH_API + '/api/product/uploadImage1', formData);
   }
 
 }

@@ -15,8 +15,10 @@ export class CartComponent implements OnInit {
 
   idcart!: number;
   items?: any;
+  items1?: any;
   amount !: number;
   total !: number;
+  total1 !: number;
 
   name!: string;
   numberphone!: string;
@@ -26,6 +28,11 @@ export class CartComponent implements OnInit {
 
   inforOrder!:orders;
 
+
+  phoneorder!: string;
+  addressoder!: string;
+  nameorder!: string;
+  inforadd!: string;
   
 
   constructor(private auth: AuthService, private token: TokenStorageService,
@@ -54,7 +61,19 @@ export class CartComponent implements OnInit {
     this.cart.getAll().subscribe(
       (data) => {
         this.items = data;
-        this.totalPrice();
+        this.items1=data;
+        console.log(this.items1);
+
+      
+
+        this.totalPrice1();
+        for(let i=0;i<this.items1.length;i++){
+          this.items1[i].price=this.formatCash(this.items1[i].price.toString());
+
+          let sum12 = this.items1[i].totalPrice;
+          this.items1[i].totalPrice  = this.formatCash(sum12.toString());
+
+        }
       }
     );
   }
@@ -77,19 +96,29 @@ export class CartComponent implements OnInit {
     );
   }
 
-  totalPrice() {
+  totalPrice1() {
     let sum = 0;
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.items.length; i++) {
       if (this.items[i].state === 0) {
         sum += this.items[i].totalPrice;
+        console.log(sum)
+
       }
 
     }
 
-    this.total = sum;
+    this.total1=sum;
+
+    this.total = this.formatCash(sum.toString());;
+    
   }
 
+  formatCash(str) {
+    return str.split('').reverse().reduce((prev, next, index) => {
+      return ((index % 3) ? next : (next + '.')) + prev
+    })
+  }
   checkOut() {
     // tslint:disable-next-line: prefer-for-of
     this.infor="";
@@ -101,8 +130,10 @@ export class CartComponent implements OnInit {
       }
     }
 
+    this.inforadd="";
+    this.inforadd="Tên người nhận hàng: "+this.nameorder+"<br>"+"Số điện thoại: "+this.phoneorder+"<br>"+"Địa chỉ nhận hàng: "+this.addressoder;
   
-    this.cart.checkOut1(this.infor,this.total).subscribe();
+    this.cart.checkOut1(this.infor,this.total1,this.inforadd).subscribe();
     for (let i = 0; i < this.items.length; i++) {
       this.cart.checkOut(this.items[i].cartId).subscribe();
       this.fecthData();

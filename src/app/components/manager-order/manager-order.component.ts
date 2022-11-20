@@ -42,9 +42,18 @@ export class ManagerOrderComponent implements OnInit {
     this.order.getAllOrder().subscribe(
       (data) => {
         this.orders = data;
+        for(let i=0;i<this.orders.length;i++){
+          this.orders[i].order_total=this.formatCash(this.orders[i].order_total.toString());
+        }
       }
     );
 
+  }
+
+  formatCash(str) {
+    return str.split('').reverse().reduce((prev, next, index) => {
+      return ((index % 3) ? next : (next + '.')) + prev
+    })
   }
 
 

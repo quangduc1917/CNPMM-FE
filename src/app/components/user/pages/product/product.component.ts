@@ -99,7 +99,8 @@ export class ProductComponent implements OnInit {
         this.imageFour = data?.imageFour;
         this.imageThree = data?.imageThree;
         this.nameProduct = data?.nameProduct;
-        this.price = data?.price;
+        // this.price = data?.price;
+        this.price=this.formatCash(data?.price.toString());
         this.content = data?.content;
       }
     );
@@ -137,6 +138,12 @@ export class ProductComponent implements OnInit {
 
     this.countReviewProduct();
 
+  }
+
+  formatCash(str) {
+    return str.split('').reverse().reduce((prev, next, index) => {
+      return ((index % 3) ? next : (next + '.')) + prev
+    })
   }
 
   getRequestParams(offset, limit, productId): any {

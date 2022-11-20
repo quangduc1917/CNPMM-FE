@@ -39,6 +39,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { ManagerOrderComponent } from './components/manager-order/manager-order.component';
 import { ManagerStatisticalComponent } from './components/manager-statistical/manager-statistical.component';
 import { ManagerNotifyComponent } from './components/manager-notify/manager-notify.component';
+import { ChartsModule } from 'ng2-charts';
+
 
 
 
@@ -90,7 +92,8 @@ enableProdMode();
     NgbModule,
     NgxPaginationModule,
     NgSelectModule,
-    ImageCropperModule
+    ImageCropperModule,
+    ChartsModule
   ],
   providers: [
     authInterceptorProviders
